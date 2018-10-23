@@ -1,0 +1,123 @@
+\documentclass[paper=letter, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+\usepackage{tcolorbox}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+\usepackage{sectsty} % Allows customizing section commands
+%\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform t  o the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underline
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+%\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+%\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+%\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+%$\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+\newcommand{\set}[1]{\{#1\}}
+\title{	
+\normalfont \normalsize 
+\textsc{Math 210A Fall 2018} \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Homework 2\\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+\author{Seyedkamyar Kazemi} % Your name
+
+\date{\normalsize\today} % Today's date or a custom date
+\begin{document}
+\maketitle
+\section{General remarks}
+\subsection{}
+\begin{tcolorbox}
+Every Countable union of intervals can be written as disjoint union of Countable open interval with exception of set of measure zero.
+\begin{proof}
+We assume that the intervals are half open (This correspond to the definition of measure given in the lecture). 
+Assume $\set{I_i}_1^\infty$ st they might intersect then define $\hat{I_n}=I_n\backslash(\cup_{i=1} ^{n-1} I_i)$. Clearly $\hat{I_i}$'s are disjoint however they are not necessarily open intervals.  \\
+Claim each of $\hat{I_i}$s are union of disjoint intervals bc
+
+\end{proof}
+\end{tcolorbox}
+\subsection{}
+
+\begin{tcolorbox}
+outer measure of disjoint union of countable measure is sum of the length of the intervals.\\
+\textbf{Note this is a Outer measure property not Measurablite property}
+\begin{proof}
+
+\end{proof}
+\end{tcolorbox}
+    \section{Handout Problems}
+    \subsection*{Problem 1)}
+    \subsubsection*{a)}
+    \newcommand{\lmnf}[1]{lim\:inf_{n \rightarrow \infty} #1}
+    \newcommand{\lmsp}[1]{lim\:su;_{n \rightarrow \infty} #1}
+    Let $x \in  \lmnf{E_n}$ then $x \in \cup_n\cap_{k\geq n} E_k$ so $x \in \cap_{k\geq n} E_k$ for some n. Thus $x \in E_k \; \forall k \geq n$  so $x \in E_k$ for some $k  \geq n$ for all n, hence $x \in \cap_n\cup_{k\geq n} E_k$
+    \subsubsection*{b)}
+    Let $E_n= (1-\frac{1}{n},1+\frac{1}{n})$ then $\lmsp{E_n}={1}$ where as $\lmnf{E_n}=0$. \textcolor{red}{?}
+    \subsubsection*{c)}
+    $(\cap_{n} \cup_{k \geq n} E_n)^c= \cup_n \cap_{k \geq n} (E_n) ^c$ so this the desired result.
+    \subsection*{Problem 2)}
+    \newcommand{\lbms}[1]{m^*(#1)}
+    $\lbms{X\backslash A}+\lbms{A}=\lbms{X}=1 \leq 1$ Thus 
+    $$\lbms{A} \leq 1 - \lbms{X\backslash A} = m_* (A)$$
+    \subsection*{Problem 3)}
+    Suppose $m^*(E)=m_*(E)$.  There is $\set{I_n}_{n=1} ^ {\infty}$ , $I_n$ open st $ \sum_{n=1} ^{\infty} l(I_n) - m^*(E) \leq \epsilon $ and $E \subset \cup_n I_n $. Similarly we can find set $\set{\hat{I}_n}_{n=1} ^ {\infty}$ , $\hat{I_n}$ open st $ \sum_{n=1} ^{\infty} l(\hat{I_n}) - m^*(X\backslash E) \leq \epsilon'$ and $X \backslash E \subset \cup_n \hat{I_n}$
+    . Also we can assume  $\hat{I_n}$s and $I_n$s are disjoint. now let $O = \cup _m  I_n$ and $F= \cap _n \hat{I_n}^c$. Clearly $O$ is open and $F$ is closed. Also $F \subset E \subset O$.
+$$m(O\backslash F)= m(\cup_n I_n \: \backslash \: \cap_n \hat{I_n}^c)$$
+By infinite additivity of outer measure for intervals
+$$=m(\cup_n m(I_n))-m(\cup _j (\hat{I_j}))=m(\cup_n m(I_n))-1+m(\cup _j (\hat{I_j}))$$
+$$=\sum_n m(I_n) + \sum _j m(\hat{I_j})-1$$
+However since $m^*(E)=m_*(E)$ , $\sum_n m(I_n) - m*(E) \leq \epsilon$ and  $\sum_i m(\hat{I_i}) - m_*(E) \leq 1- \epsilon'$
+then $$\sum_n m(I_n) + \sum_i m(\hat{I_i}) \leq 1+ \epsilon + \epsilon '$$ 
+\subsection*{Problem 4)}
+(b) $\Rightarrow$ (c) \\
+since $A_{i+1}\subset A_i$ then $\cap_{m\geq i \geq n} A_i = A_m$ so $\cap_{ i \geq n} A_i = A$ for all n. Hence 
+$m(limA_k)=m(\cup _n \cap_{k\geq n} A_k)=m(\cup_n A)=m(A)$ \\
+(c) $\Rightarrow$ (d)\\
+let $\hat(A_i)=A_i^c$ then by part C 
+\section{Extra Problems}
+\subsection*{Problem 1)}
+\txtbf{Our Definition} $\Rightarrow$ \txtbf{Books Definition}\\
+Since in our def a set E is measurable iff $E\cup [n,n+1] \; \forall n \in \mathbb{Z}$ is measurable,it's sufficient to prove for sets of finite measure. For as set of finite measure E, there exist $\set{I_n}_{n=1} ^ {\infty}$ , $I_n$ disjoint open set  st $ \sum_{n=1} ^{\infty} l(I_n) - m^*(E) \leq \epsilon$ and $E \subset \cup_n I_n$. Let $O=\cup_n I_n$. \\
+Since O and E are measurable 
+$m(O \backslash E)=m(O)-m(E)$ however O is union of disjoint open, hence measurable sets, thus
+$m(O \backslash E)=\sum _n l(I_n)-m(E) \leq \epsilon$ and clearly $E \subset O$.\\
+\\
+\textcolor{red}{ $G_\delta$ part ?}
+\textbf{Book Definition} $\Rightarrow$ \textbf{Our Definition}\\
+Since E is measurable, for each $1/n \: n \in \mathbb{N}$there is open set $O_n$ containing E st $m(O_n\backslash E) \leq 1/n$. 
+$$m(\cap_n O_n \Delta E )=m(\cap_n O_n \backslash E )+m(E \backslash \cap_n O_n) =0$$ bc E is contained in $\cap_n O_n$ and $m(\cap_n O_n\backslash E)\leq 1/n$ for every $n \in \mathbb{N}$
+\subsection*{Problem 2)}
+Since $m(E)=0$ and $m(A \cap E) \leq m(E)$ by montonicity, then  $m(A) \leq m(A \cap E) + m(A \cap E^C)=m(A \cap E^c) \leq m(A)$. Hence E is measurable.
+\subsection*{Problem 3)}
+Suppose E is measurable then for each $1/n \: n \in \mathbb{N}$ there is $F_\sigma$ set $F_n$ contained in E st $m(E \backslash F_n) =0$. But $F_\sigma$ set are in Borel sigma algebra since it's closed under union and closure and furthermore, since it contains every open set then $F_\sigma$ set are contained in the borel set. 
+\section{Book problems}
+\subsection*{Problem 2.16)}
+$(i) \Rightarrow (iii)$\\
+Since E is measurable so for each integer n  there is open set $O_n$  containing $E^c$ st $m(O_n\backslash E^c) \leq 1/n$. consider $m((E^c)^c\backslash O_n ^c) =m(E \cap O_n)=m(O_n\backslash E^c) \leq 1/n$. So let $F_n = O_n ^c$ 
+\\
+$(ii) \Rightarrow (iv)$\\
+Since E is measurable so is there is $G_\delta   $ set $O$ containing $E^c$ st $m(O_n\backslash E^c) =0$. consider $m((E^c)^c\backslash O_n ^c) =m(E \cap O_n)=m(O_n\backslash E^c)=0$. So let $F_n = O_n ^c$  
+
+
+\subsection*{Problem 2.18)}
+
+\end{document}
