@@ -4,6 +4,7 @@
 \usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
 \usepackage[english]{babel} % English language/hyphenation
 \usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{amsmath,amssymb}
 
 \usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
 
@@ -18,6 +19,8 @@
 \fancyfoot[R]{\thepage} % Page numbering for right footer
 \renewcommand{\headrulewidth}{0pt} % Remove header underline
 \renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\cnt}{\mathfrank{C}}
 \setlength{\headheight}{13.6pt} % Customize the height of the header
 
 %\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
@@ -29,14 +32,32 @@
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION
 %----------------------------------------------------------------------------------------
+\newsavebox\myboxA
+\newsavebox\myboxB
+\newlength\mylenA
 
+\newcommand*\xoverline[2][0.75]{%
+    \sbox{\myboxA}{$\m@th#2$}%
+    \setbox\myboxB\null% Phantom box
+    \ht\myboxB=\ht\myboxA%
+    \dp\myboxB=\dp\myboxA%
+    \wd\myboxB=#1\wd\myboxA% Scale phantom
+    \sbox\myboxB{$\m@th\overline{\copy\myboxB}$}%  Overlined phantom
+    \setlength\mylenA{\the\wd\myboxA}%   calc width diff
+    \addtolength\mylenA{-\the\wd\myboxB}%
+    \ifdim\wd\myboxB<\wd\myboxA%
+       \rlap{\hskip 0.5\mylenA\usebox\myboxB}{\usebox\myboxA}%
+    \else
+        \hskip -0.5\mylenA\rlap{\usebox\myboxA}{\hskip 0.5\mylenA\usebox\myboxB}%
+    \fi}
+\makeatother
 \newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
 \newcommand{\set}[1]{\{#1\}}
 \title{	
 \normalfont \normalsize 
 \textsc{Math 210A Fall 2018} \\ [25pt] % Your university, school and/or department name(s)
 \horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
-\huge Homework 2\\ % The assignment title
+\huge Homework 3\\ % The assignment title
 \horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
 }
 \author{Seyedkamyar Kazemi} % Your name
@@ -48,9 +69,51 @@
 \subsection{Problem 25)}
 Let $B_n=[n,\infty)$ then $B_{n+1} \subset B_n$. Notice that $\cap_n B_n = \emptyset$, however $m(b_n) = \infty$ for all n so $\lim_{n \rightarrow \infty} m(B_n)=\infty$. So $\lim_{n \rightarrow \infty} m(B_n) \not = m(\cap_n B_n)$  
 \subsection{Problem 34)}
-
+Let $f(x)$ be the Cantor function then consider $g: \; [0,1] \rightarrow [0,2]\; x \rightarrow x+f(x)$. \\
+\textbf{Claim} G(x) is homtopy:\\
+Since the cantor function and identity function are continues so is their addition,hence G(x) is continues.
+Assume $G(a)=G(b)$ for some $a,b \in [0,1]$
+if wlog $a < b$ then $f(a) \leq f(b)$ so $a+f(a) < b +f(b)$ which is contradiction, hence $G(x)$ is one-to-one. 
+The cantor function is onto from [0,1] to [0,1] so G is onto.
+$G(x)$ is homotopy hence it is invertable. Now $G^{-1}(\mathfrank{C})$ has non zero measure where as $\mathfrank{C}$ has measure zero.
 \subsection{Problem 39)}
+let $U_1$ be [0,1] with the middle $\alpha/3$ open interval removed,and then $U_n$ be the $U_{n-1}$ with the middle $\alpha/3^{n}$ open interval removed of the remaining intervals and so on. Then our desired set $F=\cap_n U_n$. Each $U_n$ is closed because we are removing open intervals and countable intersection of closed set is closed, so F is closed.F is measurable since it is countable intersection of measurable sets and so is it's complement. Since we are removing $2^n$ open intervals of size $\alpha/3^n$ in the n'th step $m([0,1]\backslash F)=\sum_{i=0} ^{\infty} \frac{\alpha}{3} \frac{2}{3}^n=\alpha$ and $m(F)=1 - \alpha$.  
+\\
+The closure of the Cantor set is the same Cantor set, for it is closed. The interior of the Cantor set is empty, since it contains no interval, bc assuming open interval $I \subset C$ then $l(I)>1/3^n$ for some n. Thus, the Cantor set is nowhere dense: its closure has empty interior. Hence $[0,1]\F$ is dense.
 \subsection{Problem 40)}
-\subsection{problem 42)}
+Consider generalized cantor set $\mathfrank{C}$ with $\alpha = .6$ then
+$\mathfrank{C} ^c$ is open. $\mathfrank{C} ^c$ is dense so $\overline{\mathfrank{C} ^c}=[0,1]$ , hence the boundary of $\mathfrank{C}^c$, $\partial\Omega=[0,1]\backslash \mathfrank{C}^c=\mathfrank{C}$ but $m(\mathfrank{C})=1-.6=.4 \not = 0$
+\subsection{problem 42)}  
+Assume there is countable subset of $\R$, $S={x_1 , \dots , x_n}$ st S is perfect. Now let $U_1=(x_1-1,x_1+1)$ since $x_1 \in U_1$ and $x_1$ is limit point there are infinitely many elements of $S$ in $U_1$. Let $U_2$ be the subset of $U_1$ that does not contain $x_1$. We can continue constructing $u_n$ that does not contain $x_1,\dots,x_{n-1}$. \\
+Let $V= \cap_n (\overline{U_n}\cap S)$ then V is not empty bc $\overline{U_{n+1}}\cap S) \subset \overline{U_n}\cap S)$ and also $\overline{U_n}\cap S)$ is closed and bounded hence dense. But V should contain element of S which it does not by construction. $\rightarrow \leftarrow$
 \subsection{problem 45)}
+A strictly increasing function is one to one bc if $f(x)=f(y)$ then either $x < y$ or $y<x$ which implies that $f(x) \not = f(y)$ $\rightarrow \leftarrow$
+Clear $f: I \rightarrow D=f(I)$ then clearly f is onto D where D is an interval as well. Also f(x) is continous bc f maps interval to interval. \textcolor{red}{?}
+\section{Axl}
+\subsection{Problem 2A.1)}
+let $x,y \in A=\set{\cup_{n \in K} (n,n+1]: K \subset \mathbb{Z}}$ so $x = \cup_{n \in \alpha} (n,n+1]$ and $Y=\cup_{n' \in \beta} (n',n'+1]$ where $\alpha, \beta \subset \mathbb{Z}$
+\begin{enumerate}
+    \item $x \cup y = \cup_{n \in \alpha or n \in \beta} (n,n+1] \in A$
+    \item $x \cap y = \cup_{n \in \alpha or n' \in \beta} ((n,n+1]\cap (n',n'+1]) \in A$ bc $(n,n+1]\cap(n,n+1] = (a,b] or \emptyset$
+    \item $x^c=\cap_{n \in \alpha} (n,n+1]^c=\cup_{n \in \alpha} ((-\infty,n] \cup [n+1,\infty))$ \textcolor{red}{complete}
+    \item $\mathbb{R}=\cup_{n \in \mathbb{N}} (-n,n] \in A $
+\end{enumerate}
+So A is an algebra. To check if it's Sigma algebra let $x_1,\dots \in A$ then take $x_i=\cup_{n \in \alpha_i} (n,n+1] $ where $a_i \subset \mathbb{R}$
+$$\cup_i x_i = \cup_i \cup_{n \in \alpha_i} (n,n+1] \in A$$
+Thus A is $\sigma-algebra$
+\subsection{Problem 2D.1)}
+\subsubsection*{a)}
+Let $A_n = [0.a_1\dots a_n 444\dots4,0.a_1\dots a_n 444\dots5)$ then $A=\set{\text{numbers in (0, 1) that have a decimal
+expansion containing one hundred consecutive 4s}}= \cup _n A_n$ so A is a Borel set by problem 2A,1.
+\subsubsection*{b)}
+Consider $B_n=[a_1\dotsa_{100n}44\dots4,0.a_1\dotsa_{100n}44\dots5)$ then $\cup_n B_n \subset A$ however $A_n$ are disjoint and for each n there are $10^{100n}-1$ them, so $m(\cup_n B_n) = \sum \frac{10^{100n}-1}{10^{100n+100}} $
+\subsection{problem 2D.16}
+$3/17= [0.202122...]_3$ sot he expansion of $3/17$ base 3 has one it so it can not be a cantor set.
+\subsection{Problem 2D.18}
+let $x \in [0,1]$ then if $x \in C$ then $1/2(x+x) \in  1/2C+1/2C$
+if $x \not \in C$ then it has 1's in its triacary factorization suppose $x = [0.a_1a_2\dots]_3$.
+\newpage
+\subsection{Problem 2.D.19}
+Let I be a 
+\subsection{Problem 2.D.20}
 \end{document}
